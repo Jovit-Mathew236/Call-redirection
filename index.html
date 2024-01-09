@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Number Redirection</title>
+</head>
+<body>
+
+<script>
+    // Function to extract phone number from the URL path
+    function getPhoneNumberFromUrl() {
+        // Get the current URL path
+        var path = window.location.pathname;
+
+        // Match the phone number from the path
+        var phoneNumberMatch = path.match(/\/(\d+)/);
+
+        // If a phone number is found in the path, return it
+        if (phoneNumberMatch && phoneNumberMatch[1]) {
+            return phoneNumberMatch[1];
+        }
+
+        // If no phone number is found, return null
+        return null;
+    }
+
+    // Function to redirect to a phone call
+    function redirectToPhoneCall() {
+        // Get the phone number from the URL path
+        var phoneNumber = getPhoneNumberFromUrl();
+
+        // If a phone number is found, redirect to the tel: protocol
+        if (phoneNumber) {
+            window.location.href = 'tel:' + phoneNumber;
+        } else {
+            console.log('No phone number found in the URL path.');
+        }
+    }
+
+    // Call the function when the page loads
+    window.onload = redirectToPhoneCall;
+</script>
+
+</body>
+</html>
