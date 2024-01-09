@@ -8,15 +8,15 @@
 <body>
 
 <script>
-    // Function to extract phone number from the URL path
+    // Function to extract phone number from the URL
     function getPhoneNumberFromUrl() {
-        // Get the current URL path
-        var path = window.location.pathname;
+        // Get the current URL
+        var url = window.location.href;
 
-        // Match the phone number from the path
-        var phoneNumberMatch = path.match(/\/(\d+)/);
+        // Search for a query parameter named "phone"
+        var phoneNumberMatch = url.match(/[?&]phone=([^&]*)/);
 
-        // If a phone number is found in the path, return it
+        // If a phone number is found in the URL, return it
         if (phoneNumberMatch && phoneNumberMatch[1]) {
             return phoneNumberMatch[1];
         }
@@ -27,14 +27,14 @@
 
     // Function to redirect to a phone call
     function redirectToPhoneCall() {
-        // Get the phone number from the URL path
+        // Get the phone number from the URL
         var phoneNumber = getPhoneNumberFromUrl();
 
         // If a phone number is found, redirect to the tel: protocol
         if (phoneNumber) {
             window.location.href = 'tel:' + phoneNumber;
         } else {
-            console.log('No phone number found in the URL path.');
+            console.log('No phone number found in the URL.');
         }
     }
 
